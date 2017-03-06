@@ -6,12 +6,14 @@
  * 
  */
 function stringDate(){
-	var now = new Date();    var hours = now.getHours();
-	var minutes = (now.getMinutes()<10?'0':'') + now.getMinutes()
+	var now = new Date();    
+	var hours = ('0'+now.getHours()).slice(-2);
+	var minutes = ('0'+now.getMinutes()).slice(-2);
+	var secs = ('0'+now.getSeconds()).slice(-2);
 	var day = now.getDate()
 	var month = now.getMonth();
 	var year = now.getFullYear();
-	return day+'-'+month+'-'+year+'-'+hours+':'+minutes;
+	return day+'-'+month+'-'+year+'-'+hours+':'+minutes+':'+secs;
 }
 var http = require("http");
 var fs = require('fs');
